@@ -1,0 +1,58 @@
+button {
+  
+  background-color: #df1111;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 20px;
+  pointer-events: all;
+  }
+
+button :hover {
+  background-color: #ffffff;
+  color: #df1111;
+  font-family: sans-serif;
+  font-size: 20px;
+  }
+  
+ 
+
+body
+{
+  display: flexbox;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(180deg, #57cf6d, #cdcfcf);
+}
+
+table{
+  border: 2px solid black;
+  border-collapse: collapse;
+  font-size: 20px;
+  font-family: "Inter", sans-serif;
+  background: #ffffff;
+}
+
+.drop{
+
+  color: #000000;
+  font-family: sans-serif;
+  font-size: 20px;
+  pointer-events: all;
+}
+
+h2{
+  color: #000000;
+  font-family: sans-serif;
+  font-size: 40px;
+  pointer-events: all;
+}
+
+td{
+  border: 2px solid black;
+  border-collapse: collapse;
+  padding: 3px;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 20px;
+}

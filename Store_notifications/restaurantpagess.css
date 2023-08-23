@@ -1,0 +1,665 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+body {
+    background-image: linear-gradient(180deg, rgba(245, 245, 245, 1) 0%, );
+    background-attachment: scroll;
+    background-size: 100% 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    font-family: 'Kanit', sans-serif;    
+
+}
+
+nav {
+    background: rgb(255, 255, 255);
+    padding: 5px 20px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+
+.logo img {
+    width: 200px;
+    height: 100%;
+}
+.logo a:hover {
+    text-decoration: none;
+}
+
+.menu li {
+    font-size: 16px;
+    padding: 15px 5px;
+    white-space: nowrap;
+}
+
+.logo a,
+.toggle a {
+    font-size: 20px;
+}
+
+.button.second {
+    color:white;
+    background:#383838;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Kanit', sans-serif;
+    text-align: center;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    white-space: nowrap;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    
+}
+
+a.item.button.second:hover {
+    
+    background: #3a7d3c
+}
+
+.button.third {
+    color:white;
+    background: #d16c6c;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    white-space: nowrap;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    
+}
+
+a.item.button.third:hover {
+    color: #d16c6c;
+    font-weight: bold;
+    background: #f2d5d5;
+}
+/* โทรศัพท์ */
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggle {
+    order: 1;
+}
+
+.item.button {
+    order: 2;
+}
+
+.item {
+    width: 100%;
+    text-align: center;
+    order: 3;
+    display: none;
+}
+
+.item.active {
+    display: block;
+}
+
+/* แท็ป */
+/* @media all and (min-width: 600px) {
+    .menu {
+        justify-content: center;
+    }
+    /* .banner{
+        display: none;
+    } */
+    .logo {
+        flex: 1;
+    }
+    .toggle {
+        float: 1;
+        text-align: right;
+    }
+    .item.button {
+        width: auto;
+        order: 1;
+        display: block;
+    }
+    .toggle {
+        order: 2;
+    }
+    .button.second {
+        border: 0;
+        padding: 10px;
+    }
+    .button a {
+        padding: 7px 7px;
+        
+ 
+    }
+    .button.second a {
+        background: transparent;
+    }
+    .button a:hover {
+        text-decoration: none;
+    }
+    .button:not(.second) a:hover {
+        background: rgb(79, 179, 79);
+        border-color: rgb(0, 146, 19);
+    }
+    .button.second a:hover {
+        color: rgb(23, 126, 10);
+    }
+    .button.third a {
+        background: transparent;
+    }
+    .button a:hover {
+        text-decoration: none;
+    }
+    .button:not(.third) a:hover {
+        background: rgb(79, 179, 79);
+        border-color: rgb(0, 146, 19);
+    }
+    .button.third a:hover {
+        color: rgb(23, 126, 10);
+    }
+
+
+/* พีซี */
+@media all and (min-width: 1500px) {
+    .item {
+        display: block;
+        width: auto;
+    }
+
+    .toggle {
+        display: none;
+    }
+    /* .banner{
+        display: none;
+    } */
+    .logo {
+        order: 0;
+    }
+    .item {
+        order: 1;
+    }
+    .button {
+        order: 2;
+    }
+    .menu li {
+        padding: 15px 10px;
+    }
+    .menu li.button {
+        padding-right: 0;
+    }
+}
+.resheader{
+    background-color: #ffffff;
+
+}
+.banner{
+    align-items: center;
+    justify-content: center;
+    max-width: 60%;
+    margin: auto;
+    display: block;
+
+}
+
+.maintextbox{
+    background-color: #ffffff;
+    padding: 1px 1px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.covertextbox{
+    background-color: #ffffff;
+    padding: 50px;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.textbox{
+    background-color: #ffffff;
+    padding: 15px;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    line-height: 18pt;
+    display: block;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+/* .img1box2{
+    border-radius: 25px;
+    box-shadow: 4px 3px 11px 3px rgba(0, 0, 0, 0.14);
+} */
+
+/* .textbox2{
+    display: block;
+    box-sizing: border-box;
+    font-size: 14pt;  
+    line-height: 18pt;   
+} */
+
+.foodtype {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #e6e6e6;
+}
+
+
+
+.addfoodtype {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #ececec;
+    margin-right: 1px;
+    margin-left: 0px;
+    background-color: #ececec;
+    color: #0fa842;
+    border: 1px solid #c0c0c0;
+    box-shadow: 0px 2px 6px 3px rgba(0, 0, 0, 0.05);
+    padding: 8px 16px;
+    font-size: 24px;
+
+}
+
+.food {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;      
+    align-items: center;
+    background-color: #4CAF50;
+    
+}
+
+.food li {
+    font-size: 16px;
+    padding: 10px 5px;
+    white-space: nowrap;
+    color: white;
+}
+
+.addfoodbutton {
+    padding: 10px 800px;
+    background: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+    font-size: 16px;
+}
+
+.addfoodbutton:hover {
+    text-decoration: none;
+    background: #3a7d3c;
+}
+
+.res_name {
+    font-size: 50px;
+}
+
+.res_detail {
+    color: #5c5c5c;
+    font-size: 20px;
+}
+
+.res_open_status {
+    color: #5c5c5c;
+    font-size: 20px;
+}
+
+
+.res_tel {
+    color: #5c5c5c;
+    font-size: 20px;
+}
+
+
+.tbl-full{
+    
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    line-height: 50px;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+}
+
+th, td {
+    padding: 8px;
+}
+
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+
+.deletebutton {
+    padding: 8px 15px;
+    background: #f13d30;
+    border: 1px solid;
+    text-decoration: none;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.deletebutton:hover {
+    text-decoration: none;
+    background: #793733;
+}
+
+.editbutton {
+    padding: 8px 15px;
+    background: #0da314;
+    border: 1px solid;
+    text-decoration: none;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.editbutton:hover {
+    text-decoration: none;
+    background: #1c491e;
+}
+
+  /* Create three unequal columns that floats next to each other */
+.column {
+    float: left;
+    padding: 20px;
+    height: 33%;
+    background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 120%); /* Should be removed. Only for demonstration */
+}
+
+  /* Left and right column */
+.column.side {
+    width: 25%;
+}
+
+  /* Middle column */
+.column.middle {
+    width: 50%;
+}
+
+  /* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.row{
+    margin-top: 80px;
+}
+
+
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .column.side, .column.middle {
+width: 100%;
+    }
+}
+
+.column.middle .res_name{
+    margin-top: 1rem;
+    font-size: 80px;
+    margin-left: -4.8rem;
+    font-family: 'Kanit', sans-serif;
+}
+.column.middle .res_detail{
+    font-size: 50px;
+    margin-left: -4rem;
+    font-family: 'Kanit', sans-serif;
+}
+
+.column.side .res_open_status{
+    margin-top: 4rem;
+    font-size: 50px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.column.side .res_tel{
+    font-size: 50px;
+    font-family: 'Kanit', sans-serif;
+} 
+
+
+
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+input[type="file"] {
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="select"],
+select,
+textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+input[type="submit"] {
+    background-color: #10ae68;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0e995f;
+}
+#preview {
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+.slider_main {
+    padding-top: 7%;
+}
+.order-restaurant {
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.btn-1 {
+    display: block;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-1:hover {
+    background-color: #3e8e41;
+    /* เปลี่ยนสีพื้นหลังเมื่อผู้ใช้เลื่อนเมาส์เข้าไปบนปุ่ม */
+    color: #fff;
+}
+
+.btn-1:active {
+    background-color: #1f5423;
+    /* เปลี่ยนสีพื้นหลังเมื่อผู้ใช้คลิกปุ่ม */
+}
+
+.btn-1:focus {
+    outline: none;
+    /* ไม่ให้ปุ่มมีเส้นขีดเส้นน้ำเงินเมื่อถูกกด */
+}
+
+.btn-large {
+    width: 200px;
+    height: auto;
+    align-items: center;
+}
+.btn-2 {
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s ease;
+}
+
+
+
+.btn-1:hover {
+    background-color: #3e8e41;
+}
+.btn-1 a {
+    color: #fff;
+}
+.btn {
+    text-decoration: none !important;
+    outline: none !important;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+.shopicon{
+    width: 150px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+
+}
+    
+
+.flexbox {
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  .item1 {
+    padding: 5px;
+    margin-top: 2px;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+  }
+  
+  .content {
+    display: block;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 2px;
+    justify-content: center;
+    
+    
+   
+  }
+  
+  .content1 {
+    width: auto;
+    height: 50%;
+    padding: 110px;
+    margin: auto;
+  }
+  .order-form{
+    padding: 10px;
+    margin-top: 2px;
+    margin-left: 10px;
+    margin-right: 10px;
+    justify-content: center; 
+  }
+
+  .container1 {
+    border: 2px solid #4CAF50;
+    border-radius: 30px; 
+    background-color: #EDF1D6;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+    padding: 10px;
+    margin: 50px auto;
+    max-width: 150rem;
+    width: 25%;
+}
+h3{
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Kanit', sans-serif;
+}
+.a-font{
+    font-family: 'Kanit', sans-serif;
+    text-align: center;
+}

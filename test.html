@@ -1,0 +1,15 @@
+<?php echo number_format($food_price,2,".",","); ?>
+
+$.ajax({
+    type: 'POST',
+    url: 'sub-order.php',
+    data: {
+        order_ID: order_ID,
+        order_product: order_product,
+        order_price: order_price,
+        order_status: order_status,
+        order_date: order_date,
+        cus_email: cus_email
+    }
+
+});

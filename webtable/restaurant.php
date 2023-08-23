@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<!--- js ---->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+
+<!-- databoot -->
+<?php
+// Load the library
+require 'paginator.php';
+
+// Connect to the database
+session_start();
+if (!isset($_SESSION['user_name'])) {
+    header('location:/Grab_login.php');
+}
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$dbname = 'grab';
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+mysqli_set_charset($conn, "utf8");
+
+// Set the number of records to display per page
+$recordsPerPage = 5;
+
+// Get the current page from the query string, or set to 1 if not present
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+// Calculate the offset for the query
+$offset = ($page - 1) * $recordsPerPage;
+
+// Get the total number of records in the table
+$totalRecords = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM restaurant"))[0];
+
+// Create the pagination object
+$paginator = new Paginator($totalRecords, $recordsPerPage, $page, 'page=');
+
+// Construct the SQL query
+$sql = "SELECT * FROM restaurant LIMIT $offset, $recordsPerPage";
+
+// Execute the query and get the result set
+$result = mysqli_query($conn, $sql);
+?>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/Grab_logo/Grab_logo_resize.png">
+    <title>GrabFood</title>
+    <!-- Custom CSS -->
+    <link href="assets/extra-libs/c3/c3.min.css" rel="stylesheet">
+    <link href="assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+    <link href="assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="dist/css/style.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+           <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin6">
+            <nav class="navbar top-navbar navbar-expand-md">
+                <div class="navbar-header" data-logobg="skin6">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
+                            class="ti-menu ti-close"></i></a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <div class="navbar-brand">
+                        <!-- Logo icon -->
+                        <a href="index.php">
+                            <b class="logo-icon">
+                                <!-- Dark Logo icon -->
+                                <img src="assets/images/Grab_logo/Grab_logo_resize.png" alt="homepage"
+                                    class="dark-logo" />
+                                <!-- Light Logo icon -->
+                                <img src="assets/images/Grab_logo/Grab_logo_resize.png" alt="homepage"
+                                    class="light-logo" />
+                            </b>
+                            <!--End Logo icon -->
+                            <!-- Logo text -->
+                            <span class="logo-text">
+                                <!-- dark Logo text -->
+                                <img src="assets/images/Grab_logo/Grab_logo_name_resize.png" alt="homepage"
+                                    class="dark-logo" />
+                                <!-- Light Logo text -->
+                                <img src="assets/images/Grab_logo/Grab_logo_name_resize.png" class="light-logo"
+                                    alt="homepage" />
+                            </span>
+                        </a>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
+                        data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i
+                            class="ti-more"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
+                        <!-- ============================================================== -->
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-right">
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                      
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="assets/images/Grab_logo/Grab_logo_resize.png" alt="user"
+                                    class="rounded-circle" width="40">
+
+                                
+
+
+                                    <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span class="text-dark">
+                                    <?php
+                      $cus_email = $_SESSION['user_name'];
+
+                      $selectt = " SELECT * FROM cus WHERE cus_email = '$cus_email' ";
+
+                      $resultt = mysqli_query($conn, $selectt);
+                      $row = mysqli_fetch_array($resultt);
+                      ?>
+
+                    <?php echo $row['cus_name']; ?>
+                                        </span> <i data-feather="chevron-down" class="svg-icon"></i></span>
+                                </a>
+
+                      
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                               
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout.php"><i data-feather="power"
+                                        class="svg-icon mr-2 ml-1"></i>
+                                    Logout</a>
+                               
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin6">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar" data-sidebarbg="skin6">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-small-cap"><span class="hide-menu">Consumer</span></li>
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="consumer.php"
+                                aria-expanded="false"><i class="icon-user"></i><span class="hide-menu">Consumer
+                                    profile</span></a></li>
+                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="cart.php"
+                                aria-expanded="false"><i class="icon-basket"></i><span class="hide-menu">Cart</span></a></li>
+
+                        <li class="list-divider"></li>
+                        <li class="nav-small-cap"><span class="hide-menu">Driver</span></li>
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="rider.php"
+                                aria-expanded="false"><i class="fa-solid fa-motorcycle"></i><span class="hide-menu">Rider
+                                    profile</span></a></li>
+
+                        <li class="list-divider"></li>
+                        <li class="nav-small-cap"><span class="hide-menu">Merchant</span></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="restaurant.php"
+                                aria-expanded="false"><i class="bi bi-shop"></i><span
+                                    class="hide-menu">Restaurant</span></a></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="food_order.php"
+                                aria-expanded="false"><i class="bi bi-receipt"></i><span class="hide-menu">Food order
+                                </span></a></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                aria-expanded="false"><i class="fa-solid fa-bowl-food"></i><span class="hide-menu">Food
+                                </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item"><a href="food_type.php" class="sidebar-link"><span
+                                            class="hide-menu"> Food category
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="food.php" class="sidebar-link"><span
+                                            class="hide-menu"> Food
+                                        </span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-7 align-self-center">
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Good Morning <?php echo $row['cus_name']; ?></h3>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb m-0 p-0">
+                                    <li class="breadcrumb-item"><a href="index.php">Restaurant</a>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- Start Top Leader Table -->
+                <!-- *************************************************************** -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4">
+                                    <h4 class="card-title">Restaurant</h4>
+                                    <div class="ml-auto">
+                                        <div class="dropdown sub-dropdown">
+                                            <a href="#" class="btn waves-effect waves-light btn-rounded btn btn-success"
+                                                style="float:right;" onclick="insertData()">Add</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table no-wrap v-middle mb-0">
+                                        <thead>
+                                            <tr class="border-0">
+                                                <th class="border-0 font-14 font-weight-medium text-muted px-2">ID
+                                                </th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted px-2">Picture
+                                                </th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted px-2">
+                                                    Name
+                                                </th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted px-2">Email
+                                                </th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted px-2">Status
+                                                </th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted px-2">Tel
+                                                </th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted px-2">Details
+                                                </th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted px-2">Address
+                                                </th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted px-2">Edit
+                                                </th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted px-2">Remove
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+
+                                            <?php
+                                            $objQuery = mysqli_query($conn, $sql) or die("Error Query [" . $sql . "]");
+                                            $i = 1;
+                                            while ($objResult = mysqli_fetch_array($objQuery)) {
+                                                ?>
+
+                                                <tr>
+                                                    <td class="font-weight-medium text-dark border-top-2 px-2 py-4">
+                                                        <div align="center">
+                                                            <?php echo $i; ?>
+                                                        </div>
+                                                    </td>
+
+
+                                                    <td class="font-weight-medium text-dark border-top-0 px-2 py-4">
+                                                        <img alt="" style="width: 10rem; background-color: #cfcecc;
+                                                         display: inline-flex;
+    align-items: center; border-radius: 10% !important" src="<?php echo 'uploads/' . $objResult["res_picture"]; ?>"
+                                                            class="rounded-circle">
+                                                    </td>
+
+                                                    <td class="font-weight-medium text-dark border-top-2 px-2 py-4">
+                                                        <?php echo $objResult["res_name"]; ?>
+                                                    </td>
+                                                    <td class="font-weight-medium text-dark border-top-2 px-2 py-4">
+                                                        <?php echo $objResult["res_email"]; ?>
+                                                    </td>
+
+                                                    <td class="font-weight-medium text-dark border-top-2 px-2 py-4">
+                                                        <?php echo $objResult["res_open_status"]; ?>
+                                                    </td>
+                                                    <td class="font-weight-medium text-dark border-top-2 px-2 py-4">
+                                                        <?php echo $objResult["res_tel"]; ?>
+                                                    </td>
+                                                    <td class="font-weight-medium text-dark border-top-2 px-2 py-4">
+                                                        <?php echo $objResult["res_detail"]; ?>
+                                                    </td>
+                                                    <td class="font-weight-medium text-dark border-top-2 px-2 py-4">
+                                                        <?php echo $objResult["res_address"]; ?>
+                                                    </td>
+
+
+
+                                                    <td
+                                                        class="font-weight-medium text-dark border-top-2 px-2 py-4 text-center">
+                                                        <div class="d-flex align-items-center">
+                                                            <form action="updataedata.php" method="post">
+
+                                                                <a href="#" class="btn btn-warning btn-rounded"
+                                                                    onclick="editData('<?php echo $objResult['res_picture'] ?>','<?php echo $objResult['res_name'] ?>', '<?php echo $objResult['res_email'] ?>', '<?php echo $objResult['res_password'] ?>','<?php echo $objResult['res_open_status'] ?>' ,'<?php echo $objResult['res_tel'] ?>','<?php echo $objResult['res_detail'] ?>','<?php echo $objResult['res_address'] ?>')">Edit</a>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td class="font-weight-medium text-dark px-2 py-4 text-center">
+                                                        <div class="d-flex align-items-center">
+                                                            <form action="deletedata.php" method="post">
+                                                                <a href="#"
+                                                                    class="btn waves-effect waves-light btn-rounded btn-danger delete-res"
+                                                                    data-res-email="<?php echo $objResult["res_email"]; ?>">Remove</a>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                                $i++;
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                    <style>
+                                        .pagination-green .page-link {
+                                            color: #28a745;
+                                            border-color: #28a745;
+                                        }
+
+                                        .pagination-green .page-link:hover {
+                                            color: #fff;
+                                            background-color: #28a745;
+                                            border-color: #28a745;
+                                        }
+
+                                        .pagination-green .page-link:focus {
+                                            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+                                        }
+
+                                        .pagination-green .page-item.active .page-link {
+                                            z-index: 3;
+                                            color: #fff;
+                                            background-color: #28a745;
+                                            border-color: #28a745;
+                                        }
+                                    </style>
+                                    <nav aria-label="...">
+                                        <ul class="pagination pagination-green justify-content-end">
+                                            <?php foreach ($paginator->getPages() as $page) : ?>
+                                                <?php if ($page['url']) : ?>
+                                                    <li class="page-item <?php echo $page['isCurrent'] ? 'active' : ''; ?>">
+                                                        <a class="page-link pagination-green" href="?page=<?php echo $page['num']; ?>">
+                                                            <?php echo $page['num']; ?>
+                                                            <?php if ($page['isCurrent']) : ?>
+                                                                <span class="sr-only">(current)</span>
+                                                            <?php endif; ?>
+                                                        </a>
+                                                    </li>
+                                                <?php else : ?>
+                                                    <li class="page-item disabled">
+                                                        <span class="page-link"><?php echo $page['num']; ?></span>
+                                                    </li>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- *************************************************************** -->
+                <!-- End Top Leader Table -->
+                <!-- *************************************************************** -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center text-muted">
+                <!-- All Rights Reserved by Adminmart. Designed and Developed by <a
+                    href="https://wrappixel.com">WrapPixel</a>. -->
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- apps -->
+    <!-- apps -->
+    <script src="dist/js/app-style-switcher.js"></script>
+    <script src="dist/js/feather.min.js"></script>
+    <script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="dist/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <script src="assets/extra-libs/c3/d3.min.js"></script>
+    <script src="assets/extra-libs/c3/c3.min.js"></script>
+    <script src="assets/libs/chartist/dist/chartist.min.js"></script>
+    <script src="assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="dist/js/pages/dashboards/dashboard1.min.js"></script>
+
+    <style>
+        .form-group {
+            text-align: left;
+        }
+
+        label {
+            margin-right: 1rem;
+        }
+    </style>
+
+
+    <script>
+        function showPreview(event) {
+            var output = document.getElementById('preview');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src) // free memory
+            };
+        }
+
+        // ===================================================================== Insert data =====================================================================
+        function insertData() {
+            // Display a pop-up window with a form for inserting the data
+            Swal.fire({
+                title: 'Insert Data',
+                html: '<form id="insert-form" class="form" enctype="multipart/form-data">' +
+
+                    '<div class="form-group">' +
+                    '<label for="res_picture" class="label font-weight-medium text-dark">Picture :</label>' +
+                    '<input type="file" id="res_picture" name="res_picture" class="form-control" onchange="showPreview(event)">' +
+                    '<div class="form-group">' +
+                    '<br><img id="preview" style="max-width:100%;" >' +
+                    '</div>' +
+
+                    '<div class="form-group">' +
+                    '<label for="res_name" class="label font-weight-medium text-dark">Restaurant Name :</label>' +
+                    '<input type="text" id="res_name" name="res_name" class="form-control">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="res_email" class="label font-weight-medium text-dark">Email :</label>' +
+                    '<input type="email" id="res_email" name="res_email" class="form-control">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="res_password" class="label font-weight-medium text-dark">Password :</label>' +
+                    '<input type="password" id="res_password" name="res_password" class="form-control">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="res_open_status" class="label font-weight-medium text-dark">Open Status :</label>' +
+                    '<select id="res_open_status" name="res_open_status" class="form-control">' +
+                    '<option value="Open">Open</option>' +
+                    '<option value="Close">Closed</option>' +
+                    '</select>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="res_tel" class="label font-weight-medium text-dark">Telephone :</label>' +
+                    '<input type="tel" id="res_tel" name="res_tel" class="form-control">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="res_detail" class="label font-weight-medium text-dark">Detail :</label>' +
+                    '<textarea id="res_detail" name="res_detail" class="form-control"></textarea>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="res_address" class="label font-weight-medium text-dark">Address :</label>' +
+                    '<textarea id="res_address" name="res_address" class="form-control"></textarea>' +
+                    '</div>' +
+                    '</form>',
+                showCancelButton: true,
+                confirmButtonText: 'Save',
+                showLoaderOnConfirm: true,
+                confirmButtonColor: '#10ae68',
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Show a success message
+                    var formData = new FormData();
+
+                    formData.append('res_picture', $('#res_picture')[0].files[0]);
+                    formData.append('res_email', $('#res_email').val());
+                    formData.append('res_name', $('#res_name').val());
+
+                    formData.append('res_password', $('#res_password').val());
+                    formData.append('res_tel', $('#res_tel').val());
+                    formData.append('res_address', $('#res_address').val());
+                    formData.append('res_detail', $('#res_detail').val());
+                    formData.append('res_open_status', $('#res_open_status').val());
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'insert-data-res.php',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (data) {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Data has been saved successfully.',
+                                icon: 'success',
+                                confirmButtonColor: '#10ae68'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        },
+                        error: function () {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Failed to save data.',
+                                icon: 'error',
+                                confirmButtonColor: '#d33'
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+        // ===================================================================== Update data =====================================================================
+
+        function editData(res_picture, res_name, res_email, res_password, res_open_status, res_tel, res_detail, res_address) {
+
+            console.log(res_picture);
+            console.log(res_name);
+            console.log(res_email);
+            console.log(res_password);
+            console.log(res_open_status);
+            console.log(res_tel);
+            console.log(res_detail);
+            console.log(res_address);
+            // Display a pop-up window with a form for editing the data
+            Swal.fire({
+                title: 'Edit Data',
+                html: '<form id="insert-form" class="form" enctype="multipart/form-data">' +
+                    '<div class="form-group">' +
+                    '<label for="res_picture" class="label font-weight-medium text-dark">Picture :</label>' +
+                    '<input type="file" id="res_picture" name="res_picture" class="form-control" onchange="showPreview(event)">' +
+                    '<div class="form-group">' +
+                    '<br><img src="/webtable/uploads/' + res_picture + '" id="preview" style="max-width:100%;" >' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="res_name" class="label font-weight-medium text-dark">Name :</label>' +
+                    '<input type="text" id="res_name" name="res_name" value="' + res_name + '" class="form-control">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="res_email" class="label font-weight-medium text-dark">Email :</label>' +
+                    '<input type="email" id="res_email" name="res_email" value="' + res_email +
+                    '" class="form-control" disabled>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="res_password" class="label font-weight-medium text-dark">Password:</label>' +
+                    '<input type="text" id="res_password" name="res_password" value="' + res_password +
+                    '" class="form-control">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="res_open_status" class="label font-weight-medium text-dark">Open Status :</label>' +
+                    '<select id="res_open_status" name="res_open_status" class="form-control">' +
+                    `${res_open_status === 'Open' && "<option value='Open'>Open</option> <option value='Close'>Close</option>"}` +
+                    `${res_open_status === 'Close' && "<option value='Close'>Close</option> <option value='Open'>Open</option>"}` +
+                    '</select>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="res_tel" class="label font-weight-medium text-dark">Telephone :</label>' +
+                    '<input type="tel" id="res_tel" name="res_tel" value="' + res_tel + '" class="form-control">' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="res_detail" class="label font-weight-medium text-dark">Detail :</label>' +
+                    '<textarea id="res_detail" name="res_detail" class="form-control">' + res_detail + '</textarea>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label for="res_address" class="label font-weight-medium text-dark">Address :</label>' +
+                    '<textarea id="res_address" name="res_address" class="form-control">' + res_address + '</textarea>' +
+                    '</div>' +
+                    '</form>',
+                showCancelButton: true,
+                confirmButtonText: 'Save',
+                showLoaderOnConfirm: true,
+                confirmButtonColor: '#10ae68',
+
+
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var formData = new FormData();
+
+                    var fileInput = $('#res_picture')[0];
+
+                    if (fileInput.files.length > 0) {
+                        console.log("มีรูป");
+                        formData.append('res_picture', fileInput.files[0]);
+                    } else {
+                        console.log("ไม่มีรูป");
+                    }
+                            formData.append('res_email', $('#res_email').val());
+                            formData.append('res_name', $('#res_name').val());
+                            formData.append('res_password', $('#res_password').val());
+                            formData.append('res_tel', $('#res_tel').val());
+                            formData.append('res_address', $('#res_address').val());
+                            formData.append('res_detail', $('#res_detail').val());
+                            formData.append('res_open_status', $('#res_open_status').val());
+
+                            $.ajax({
+                                type: 'POST',
+                                url: 'update-data-res.php',
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                success: function (data) {
+                                    Swal.fire({
+                                        title: 'Success!',
+                                        text: 'Data has been saved successfully.',
+                                        icon: 'success',
+                                        confirmButtonColor: '#10ae68'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
+                                            
+                                        }
+                                    });
+                                },
+                                error: function () {
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: 'Failed to save data.',
+                                        icon: 'error',
+                                        confirmButtonColor: '#d33'
+                                    });
+                                }
+                            });
+                        
+                        
+
+                }
+                    
+                });
+            }
+        
+
+
+        // ===================================================================== delete data =====================================================================
+        $(document).ready(function () {
+            $('.delete-res').click(function () {
+                var res_email = $(this).data('res-email');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Are you sure?',
+                    text: 'You want to delete ' + res_email + ' record!',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: 'POST',
+                            url: 'delete-data-res.php',
+                            data: {
+                                res_email: res_email
+                            },
+                            success: function (data) {
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: 'record deleted successfully.',
+                                    icon: 'success',
+                                    confirmButtonColor: '#10ae68'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            },
+                            error: function () {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Something went wrong!'
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

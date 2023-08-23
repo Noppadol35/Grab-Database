@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grab Food</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <ul class="menu">
+            <li class="logo"><a href="#"><img src="GrabFood-logo.png"></a></li>
+            <li class="item"><a href="#">แก้ไขข้อมูลร้านค้า บลาๆ</a></li>
+            <li class="item button"><a href="#">แก้ไขบลาๆ</a></li>
+            <li class="item button second"><a href="#">แก้ไขบลาๆ</a></li>
+            <li class="toggle"><a href="#"><i class="fa-solid fa-bars"></i></a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>เพิ่มรายการอาหาร</h2><br>
+        <form>
+            
+            <label>ชื่ออาหาร :</label>
+            <input type="text" id="imageNameInput" placeholder="Enter image name">
+            <br><br>
+            <label for="fileInput">โปรดเลือกรูปภาพ:</label>
+            <input type="file" id="fileInput" accept="image/*" name="image">
+            
+            <button type="button" id="uploadBtn">Upload</button>
+        </form>
+        <div id="imageContainer"></div>
+    </div>
+
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Edit Image Name</h3>
+            <form>
+                <input type="text" id="editImageNameInput" placeholder="Enter new image name">
+                <button type="button" id="saveEditBtn">Save</button>
+            </form>
+        </div>
+    </div>
+    <canvas id="canvas" style="display:none;"></canvas>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

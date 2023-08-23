@@ -1,0 +1,80 @@
+<?php
+    require('connect.php');
+    
+    $sql = "SELECT * FROM restaurant";
+
+    $result = mysqli_query($conn, $sql);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Grab Food</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="restaurant_style.css">
+</head>
+<body>
+        <nav>
+            <ul class="menu">
+                <li class="logo"><a href="#"><img src="img/GrabFood-logo.png"></a></li>
+                <li class="item"><a href="#" target="popup" onclick="window.open('insert_resuest.php','insert','width=1000,height=800')" rel="noopener noreferrer"><i class="fa-solid fa-shop"></i> แก้ไขข้อมูลร้านค้า</a></li>
+                <li class="item "><a href="#" target="popup" onclick="window.open('insert_resuest.php','insert','width=1000,height=800')" rel="noopener noreferrer"><i class="fa-solid fa-user"></i> แก้ไขข้อมูลบุลคล</a></li>
+                <li class="item button second"><a href="#">Log Out</a></li>
+                <li class="toggle"><a href="#"><i class="fa-solid fa-bars"></i></a></li>
+            </ul>
+        </nav>
+        
+    <div class="resheader">
+        <img  src="img/nj.jpg" alt="banner" class="banner">
+    <div class="maintextbox">
+        <div class="covertextbox">
+            <div class="textbox">  
+
+                <?php
+                    $sql = "SELECT * FROM restaurant";
+                    $result = mysqli_query($conn, $sql);
+                    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                ?>
+                    <div class="res_name"><?php echo $row["res_name"];  ?></div><br>
+                    <div class="res_detail"><?php echo $row["res_detail"];  ?></div><br>
+                    <div class="res_opentime"><?php echo $row["res_open_status"];  ?></div><br>
+                    <div class="res_opendays"><?php echo $row["res_name"];  ?> - <?php echo $row["res_name"];  ?></div><br>
+                    <div class="res_tel"><?php echo $row["res_tel"];  ?></div><br>
+
+                </div>
+            </div> 
+        </div>
+    </div>   
+
+    <ul class="food">
+        <li id="add-food"><a href="#" target="popup" onclick="window.open('editfood.php','add','width=1000,height=800')" rel="noopener noreferrer"><i class="fa-solid fa-plus"></i> เพิ่มอาหาร</a></li>
+        <li id="edit-food"><a href="#" target="popup" onclick="window.open('editfood.php','edit','width=1000,height=800')" rel="noopener noreferrer"><i class="fa-solid fa-pen-to-square"></i> แก้ไขอาหาร</a></li>
+        <li id="delete-food"><a href="#" target="popup" onclick="window.open('editfood.php','delete','width=1000,height=800')" rel="noopener noreferrer"><i class="fa-solid fa-trash"></i> ลบอาหาร</a></li>
+    </ul>
+
+    <div class="foodtype">
+        <div class="addfoodtype">
+            อาหารทั้งหมด
+        </div>
+    </div>    
+
+    
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
+
+<?php
+
+    mysqli_close($conn);
+
+?>

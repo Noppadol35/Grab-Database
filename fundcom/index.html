@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+body {
+    font-family: 'Prompt', sans-serif !important;
+}
+</style>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="css/style.css?v=90">
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="js/bootstrap.js"></script>  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/test.css?v=59" rel="stylesheet">
+
+
+    <!-- Basic stylesheet -->
+    <link rel="stylesheet" href="owlcarousel/dist/assets/owl.carousel.min.css">
+
+    <!-- Default Theme -->
+    <link rel="stylesheet" href="owlcarousel/dist/assets/owl.theme.default.min.css">
+
+    <title>รีสอร์ท โรงแรม</title>
+</head>
+<nav class="navbar navbar-expand d-sm-block navbar-light bg-white jobbar fixed-top static-top shadow" id="HeaderZ">
+
+    <!-- Sidebar Toggle (Topbar) -->
+    <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button> -->
+
+
+
+
+    <!-- Topbar Navbar -->
+
+    <div class="collapse navbar-collapse topbar" id="navbarNavDropdown">
+        <div class="logo1">
+            <!-- <img src="/hotel/images/logo.jpg" class="imagelogo1" id="Headerlogo">
+ -->
+
+        </div>
+
+
+        <ul class="navbar-nav sm-auto" style="margin-inline: auto !important">
+
+            <!-- Nav Item - User Information -->
+
+            <!-- <li class="nav-item ">
+            <a href="javascript:void(0)">Gallery</a>
+            <a href="javascript:void(0)">Attraction</a>
+            <a href="javascript:void(0)">Facilities</a>
+            <a href="accom.php">Accommodacations</a>
+            <a class="active" href="save_register">Home</a>
+        </li> -->
+
+            <!-- close -->
+            <!-- <?php 
+                $strSQL = "SELECT * FROM type_room WHERE type_room.status = 'on'";
+                $objQuery = mysqli_query($conn, $strSQL);
+                $tbl = array();
+                while($objResult = mysqli_fetch_array($objQuery, MYSQLI_ASSOC)){
+                    array_push($tbl,$objResult['name']);
+                };
+            ?> -->
+
+            <ul class="nav">
+                <!-- <li class="nav-item">
+                    <a class="nav-link active" href="index">Home</a>
+                </li> -->
+                <li class="nav-item dropdown" style="margin-top: 20px;">
+                    <a class="nav-link dropbtn newcolor underline-animation" href="index">personal information</a>
+                </li>
+                <li class="nav-item" style="margin-top: 20px;">
+                    <a class="nav-link newcolor2  underline-animation" href="facilities">acticle</a>
+                </li>
+                <style>
+                .dropdown-toggle::after {
+                    display: none !important;
+                }
+                </style>
+                <li class="nav-item dropdown " style="margin-top: 20px;">
+                    <a class="nav-link dropbtn newcolor3 " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Presentation video
+                    </a>
+                    <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item undermeet" style="margin-top: 8px; font-size:1.016rem;"
+                            href="Meeting">Meeting</a>
+                        <a class="dropdown-item underwed" style="margin-top: 3px; font-size:1.016rem;"
+                            href="Wedding">Wedding</a>
+                    </div> -->
+                </li>
+
+                </li>
+                <!-- <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') { ?>
+                <li class="nav-item dropdown  show" style="margin-top: 20px;">
+                    <a class="nav-link dropdown-toggle newcolor" href="#" id="navbarDropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Manage <i class="fa fa-angle-down p-1" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="manage?type=type">ประเภทของห้อง</a>
+                        <a class="dropdown-item" href="manage?type=room">ห้อง</a>
+                        <a class="dropdown-item" href="manage?type=order">การจองห้อง</a>
+                    </div>
+                </li>
+                <?php } ?>
+                <div class="topbar-divider d-none d-sm-block"></div> -->
+
+
+                <!-- <li class="nav-item no-arrow login">
+                <a class="nav-link  login"  id="exampleModal" role="button" data-toggle="modal" data-target="#exampleModal" >
+                    <span class="mr-2 d-none d-lg-inline login p-2 rounded-sm ">Log in</span>
+
+                </a> -->
+                <!-- Button trigger modal -->
+
+
+
+
+</nav>
+
+
+<script>
+function resizeHeader() {
+    let header = document.getElementById("HeaderZ")
+    if (window.scrollY > 0) {
+        header.classList.add('schooooo')
+    } else {
+        header.classList.remove('schooooo')
+    }
+}
+window.addEventListener("scroll", resizeHeader)
+</script>
+
+
+<style>
+.jobbar {
+    height: 7.565rem !important;
+    width: 1275px !important;
+    background-color: red;
+    transition: height 0.25s cubic-bezier(0, 0, 0.47, -0.09);
+}
+
+.schooooo {
+    height: 5.575rem !important;
+
+}
+
+.navbar {
+    padding: 0 !important;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown:hover .dropdown-menu2 {
+    display: block;
+}
+
+
+.imagelogo1 {
+    width: 175px;
+    padding: 1px;
+    margin-left: 136px;
+    border-radius: 0;
+    /* margin-left: 54px; */
+    /* margin-block-start: 61px; */
+    /* margin-inline-start: 20px; */
+    margin-top: -39px;
+    height: 84px;
+    transition: height 0.25s cubic-bezier(0, 0, 0.47, -0.09);
+}
+
+.logo {
+    width: 144px;
+    height: 67px;
+    margin-top: -29px;
+    margin-left: 130px !important;
+}
+
+.resort1 {
+    margin-left: 206px;
+    margin-top: -26px;
+    font-family: system-ui;
+    letter-spacing: 1px;
+    font-size: 0.857rem;
+}
+
+.hdt {
+    letter-spacing: 3px;
+    margin-left: 161px;
+    margin-top: -8px;
+    font-family: math;
+    font-size: 0.999rem;
+}
+
+.texthead {
+    margin-left: 148px !important;
+    font-size: 14px !important;
+    margin-top: -5px;
+}
+
+.textre {
+    margin-top: -26px;
+    font-size: 11px;
+    margin-left: 190px;
+}
+</style>
+
+<div class="container-sm">
+    <div class="imafun"><img style="width: 50%; height:100%;" src="/fundcom/images/fUND8.jpg"></div>
+</div>
+<div class="owl-carousel mt-5 row">
+    <div class=" travel1"><img style="width: 100%; height:100%;" src="/fundcom/images/fund1.jpg"></div>
+    <div class="travel"><img style="width: 100%; height:100%;" src="/fundcom/images/fund2.jpg"></div>
+    <div><img style="width: 100%; height:100% " src="/fundcom/images/fund4.jpg"></div>
+    <div><img style="width: 100%; height:100% " src="/fundcom/images/fund5.jpg"></div>
+    <div><img style="width: 100%; height:100% " src="/fundcom/images/fund6.jpg"></div>
+</div>
+<div class="container-fluid room ">
+    <div class="row  head3">
+        <div class="container-fluid p-0">
+            <div class="row backgr p-4" style="margin-top: 35px; padding: 3.5rem !important">
+                <div class=" col text-center">
+                    <div class="row p-2">
+                        <div class="col p-2">
+                            <h2 class="headhead2">Personal Information</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-2">
+    <div class="row ">
+        <div class="col text-center">
+            <h2 class="head2-1">HOTEL FACILITIES</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <p class="text">The Cavalli Casa Resort has prepared various services to support every customer.
+                If
+                there is any other service requested,
+                please inform us during your booking or the time you check in. </p>
+        </div>
+    </div>
+</div>
+</div>
+<div class="row p-2">
+    <div class="col text-center "><img style="max-width:100%"
+            src="https://image.makewebeasy.net/makeweb/0/gNse0VuI4/2500/2019_07_21.png"></div>
+</div><br>
+
+<div class="row">
+    <div class="col text-center">
+        <h2 class="hh2">WEDDING&EVENT</h2>
+    </div>
+</div>
+< !-- <div class="container-fluid p-0">
+    <div class="col-fluid">
+        <div class="row p-3 ">-->< !-- <div class="col text-left">
+                <h2 class="headd2">MEETING ROOM</h2>
+        </div>--><div class="owl-carousel owlnear ">
+            <div><img style="width:100%; height:100%;"
+                    src="https://i.pinimg.com/564x/36/78/bb/3678bb0fcc6f440ba545f7565b57c761.jpg"></div>
+            <div class="centerimg"><img style="width:52%;"
+                    src="https://i.pinimg.com/564x/d0/83/c4/d083c438bfaf9eaec2f479fd0d43d632.jpg"></div>
+            <div class="wed"><img style="width:60%; height:100%; "
+                    src="https://mlh08gnthbva.i.optimole.com/jjD78gU-B1_BSnxA/w:auto/h:auto/q:auto/https://korostudio.com/wp-content/uploads/2020/10/montien-riverside-hotel-wedding-reception-2021-44.jpg">
+            </div>
+        </div><br>
+    </body>
+ <!-- Bootstrap core JavaScript-->
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="fundcom/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<script src="fundcom/owlcarousel/dist/owl.carousel.min.js"></script>
+<script>
+    var myCarousel = document.getElementById('myCarousel')
+
+    myCarousel.addEventListener('slide.bs.carousel', function () {
+      // do something...
+    })
+</script>

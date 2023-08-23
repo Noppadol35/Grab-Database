@@ -1,0 +1,139 @@
+html {
+    font-family: 'Prompt', sans-serif !important;
+}
+.text1 {
+            padding: 2px !important;
+            color: #765D39;
+            font-size: 17px;
+            margin-top: -5px;
+            font-family: myFirstFont !important;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .headh2 {
+            padding: 50px !important;
+            color: #6C7B8B;
+            font-size: 50px;
+        }
+        .text1-1 {
+            margin-top: 50px;
+            font-family: myFirstFont !important;
+            color: #765D39;
+            font-size: 19px;
+        }
+
+        .ou {
+            margin-top: -40px;
+            font-size: 15px;
+        }
+
+        .heead2 {
+            /* font-family: myFirstFont; */
+            color: #6C7B8B;
+            padding: 40px !important;
+        }
+
+        .head2-1 {
+            padding: 10px !important;
+            /* font-family: myFirstFont; */
+        }
+
+        .text {
+            padding: 10px !important;
+            /* font-family: myFirstFont; */
+            font-size: 17px;
+        }
+
+        .head3 {
+            padding: 60px !important;
+            /* font-family: myFirstFont; */
+        }
+
+        .tex {
+            padding: 50px !important;
+        }
+
+        .headd2 {
+            padding: 100px !important;
+            /* font-family: myFirstFont; */
+            color: white;
+            font-size: 30px !important;
+        }
+
+        .texx {
+            padding: 100px !important;
+        }
+
+        .headhead2 {
+            color: white;
+            font-family: Century Gothic;
+            font-size: 1.875rem !important;
+            word-spacing: 12px;
+        }
+
+        .textnear {
+            color: white;
+            /* font-family: myFirstFont !important; */
+            font-size: 38px !important;
+        }
+
+        .backgr {
+            background-color: black;
+        }
+
+        .drive {
+            color: white;
+            /* font-family: myFirstFont !important; */
+            font-size: 38px !important;
+        }
+
+        .textca {
+            padding: 1px !important;
+            /* font-family: myFirstFont; */
+            color: white;
+            font-size: 38px;
+        }
+
+        .tt1 {
+            padding: 2px !important;
+            /* font-family: myFirstFont; */
+            color: #765D39;
+            font-size: 17px;
+        }
+
+        .hh2 {
+            /* font-family: myFirstFont; */
+            color: #6C7B8B !important;
+        }
+
+        .name {
+            font-size: 26px;
+        }
+
+        .size {
+            font-size: 29px;
+        }
+
+        .mall {
+            margin-top: -21px;
+            font-size: 14px;
+        }
+
+        .room {
+            margin-top: -80px;
+        }
+
+        .our {
+            text-decoration: none !important;
+            color: #778899 !important;
+        }
+
+        .price {
+            margin-top: 35px;
+        }
+
+        .bl {
+            color: white;
+            margin-top: 20px;
+        }
